@@ -11,6 +11,8 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
 
+    `gatsby-plugin-graphql-codegen`,
+
     // for markdown file system
     {
       resolve: `gatsby-source-filesystem`,
