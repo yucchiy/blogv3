@@ -17,7 +17,9 @@ const config: GatsbyConfig = {
         path: `${__dirname}/articles/`
       }
     },
-    `gatsby-transformer-remark`
+    `gatsby-transformer-remark`,
+
+    `gatsby-plugin-postcss`
   ],
 }
 

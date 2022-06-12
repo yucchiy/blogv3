@@ -7,15 +7,17 @@ export default function Template({
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
   return (
-    <div className="blog-post-container">
-      <div className="blog-post">
-        <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.date}</h2>
+    <div className="container mx-auto max-w-2xl">
+      <article className="blog-post">
+        <header>
+          <time className="text-gray-500">{frontmatter.date}</time>
+          <h1>{frontmatter.title}</h1>
+        </header>
         <div
-          className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: html }}
+            className="prose prose-stone"
+            dangerouslySetInnerHTML={{ __html: html }}
         />
-      </div>
+      </article>
     </div>
   )
 }
