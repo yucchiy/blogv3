@@ -6,11 +6,18 @@ export default function Template({
   data,
 }) {
   const { markdownRemark } = data
-  const { frontmatter, html } = markdownRemark
+  const { frontmatter, html, fields, excerpt } = markdownRemark
   const tags = frontmatter.tags || []
 
+  const description = frontmatter.description || excerpt
+
   return (
-    <Layout>
+    <Layout
+      title = {frontmatter.title}
+      description = {description}
+      url = {fields.slug}
+      eyecatchImage = {fields.slug}
+    >
       <div className="container mx-auto max-w-3xl px-4">
         <article>
           <header className="pb-4">
@@ -33,14 +40,23 @@ export default function Template({
     </Layout>
   )
 }
+
 export const pageQuery = graphql`
   query($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html
+      excerpt
+      fields {
+        slug
+      }
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         tags
         title
+        description
+        eyecatch {
+          publicURL
+        }
       }
     }
   }
