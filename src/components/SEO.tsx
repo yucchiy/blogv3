@@ -1,3 +1,4 @@
+import { graphql, useStaticQuery } from "gatsby"
 import * as React from "react"
 import { Helmet } from "react-helmet"
 import defaultImage from "../images/defaultImage.png"
@@ -15,13 +16,27 @@ const SEO = ({
     url,
     eyecatchImage,
 }: SEOProps) => {
-    // TODO: parameterlize
-    const siteName = "Yucchiy's Note"
-    const siteBaseUrl = "https://blog.yucchiy.com"
-    const defaultDescription = ""
+
+    const data = useStaticQuery(graphql`
+        query {
+            site {
+                siteMetadata {
+                    title
+                    siteUrl
+                    siteLang
+                    defaultDescription
+                    twitterCard
+                }
+            }
+        }
+    `)
+
+    const siteName = data.site.siteMetadata.title
+    const siteBaseUrl = data.site.siteMetadata.siteUrl
+    const defaultDescription = data.site.siteMetadata.defaultDescription
     const defaultUrl = "/"
-    const twitterSite = "@yucchiy_"
-    const siteLang = "ja"
+    const twitterSite = data.site.siteMetadata.twitterCard
+    const siteLang = data.site.siteMetadata.siteLang
 
     const metaTitle = title ? `${title} | ${siteName}` : siteName;
     const metaDescription = description || defaultDescription;

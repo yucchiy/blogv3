@@ -268,6 +268,9 @@ export type SiteSiteMetadata = {
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   siteUrl?: Maybe<Scalars['String']>;
+  siteLang?: Maybe<Scalars['String']>;
+  defaultDescription?: Maybe<Scalars['String']>;
+  twitterCard?: Maybe<Scalars['String']>;
 };
 
 export type SiteFunction = Node & {
@@ -1547,6 +1550,9 @@ export type SiteSiteMetadataFilterInput = {
   title?: InputMaybe<StringQueryOperatorInput>;
   description?: InputMaybe<StringQueryOperatorInput>;
   siteUrl?: InputMaybe<StringQueryOperatorInput>;
+  siteLang?: InputMaybe<StringQueryOperatorInput>;
+  defaultDescription?: InputMaybe<StringQueryOperatorInput>;
+  twitterCard?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteConnection = {
@@ -1599,6 +1605,9 @@ export type SiteFieldsEnum =
   | 'siteMetadata___title'
   | 'siteMetadata___description'
   | 'siteMetadata___siteUrl'
+  | 'siteMetadata___siteLang'
+  | 'siteMetadata___defaultDescription'
+  | 'siteMetadata___twitterCard'
   | 'port'
   | 'host'
   | 'graphqlTypegen'
@@ -2868,6 +2877,16 @@ export type MarkdownRemarkSortInput = {
   fields?: InputMaybe<Array<InputMaybe<MarkdownRemarkFieldsEnum>>>;
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
+
+export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Unnamed_1_Query = { site?: { siteMetadata?: { title?: string | null } | null } | null };
+
+export type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type Unnamed_2_Query = { site?: { siteMetadata?: { title?: string | null, siteUrl?: string | null, siteLang?: string | null, defaultDescription?: string | null, twitterCard?: string | null } | null } | null };
 
 export type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 

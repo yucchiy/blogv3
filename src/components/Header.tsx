@@ -1,12 +1,21 @@
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import * as React from "react"
 
 type HeaderProps = {
 }
 
 const Header = ({ }: HeaderProps) => {
-    // TODO: parameterlize
-    const siteName = "Yucchiy's Note"
+    const data = useStaticQuery(graphql`
+        query {
+            site {
+                siteMetadata {
+                    title
+                }
+            }
+        }
+    `)
+
+    const siteName = data.site.siteMetadata.title
     return (
         <div className="container max-w-3xl mx-auto mb-10 mt-10">
             <h3 className="text-2xl font-bold text-center">

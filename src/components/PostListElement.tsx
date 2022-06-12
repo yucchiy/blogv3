@@ -10,9 +10,6 @@ type PostListElementProps = {
 }
 
 const PostListElement = ({ title, slug, published, tags }: PostListElementProps ) => {
-    // TODO: parameterlize
-    const siteName = "Yucchiy's Note"
-
     tags = tags || []
 
     return (

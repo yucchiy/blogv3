@@ -2,7 +2,7 @@ import { graphql, Link } from "gatsby";
 import React from "react";
 import { PostPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
-import PostListElement from "../components/PostListElement";
+import kebabCase from "lodash/kebabCase"
 
 type PostPageProps = {
   data: PostPageQuery,
@@ -38,7 +38,7 @@ export default function Template({data}: PostPageProps ) {
                   <span className="text-sm text-gray-500">Tags: </span>
                   {tags.map((tag) => {
                     return (
-                      <Link to={`/tags/${tag}`} className="text-sm text-gray-400">{tag}</Link>
+                      <Link to={`/tags/${kebabCase(tag || "")}/`} className="text-sm text-gray-400">{tag}</Link>
                     )
                   })}
                 </div>
