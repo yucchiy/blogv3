@@ -1,24 +1,27 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Layout from "../components/Layout"
 
 export default function Template({
-  data, // this prop will be injected by the GraphQL query below.
+  data,
 }) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
+  const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
   return (
-    <div className="container mx-auto max-w-2xl">
-      <article className="blog-post">
-        <header>
-          <time className="text-gray-500">{frontmatter.date}</time>
-          <h1>{frontmatter.title}</h1>
-        </header>
-        <div
-            className="prose prose-stone"
-            dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </article>
-    </div>
+    <Layout>
+      <div className="container mx-auto max-w-3xl px-4">
+        <article className="blog-post">
+          <header className="pb-4">
+            <time className="text-sm text-gray-500">{frontmatter.date}</time>
+            <h1 className="text-2xl font-semibold text-gray-700">{frontmatter.title}</h1>
+          </header>
+          <div
+              className="prose max-w-none"
+              dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </article>
+      </div>
+    </Layout>
   )
 }
 export const pageQuery = graphql`
@@ -27,6 +30,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
+        tags
         title
       }
     }
