@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
 
 export default function Template({
@@ -7,13 +7,22 @@ export default function Template({
 }) {
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
+  const tags = frontmatter.tags || []
+
   return (
     <Layout>
       <div className="container mx-auto max-w-3xl px-4">
-        <article className="blog-post">
+        <article>
           <header className="pb-4">
-            <time className="text-sm text-gray-500">{frontmatter.date}</time>
-            <h1 className="text-2xl font-semibold text-gray-700">{frontmatter.title}</h1>
+            <time className="text-sm text-gray-500 mb-1">{frontmatter.date}</time>
+            <h1 className="text-2xl font-semibold text-gray-700 mb-1">{frontmatter.title}</h1>
+            <div class="flex justify-start gap-2">
+              {tags.map((tag) => {
+                return (
+                  <Link to={`/tags/${tag}`} className="text-sm text-gray-400">#{tag}</Link>
+                )
+              })}
+            </div>
           </header>
           <div
               className="prose max-w-none"
