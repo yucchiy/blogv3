@@ -10,6 +10,8 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
+
+    // for markdown file system
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -17,7 +19,24 @@ const config: GatsbyConfig = {
         path: `${__dirname}/articles/`
       }
     },
-    `gatsby-transformer-remark`,
+
+    // for images
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+              showCaptions: true,
+              markdownCaptions: true,
+            }
+          }
+        ]
+      }
+    },
 
     `gatsby-plugin-postcss`
   ],
