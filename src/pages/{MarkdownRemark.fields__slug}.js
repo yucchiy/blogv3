@@ -16,17 +16,18 @@ export default function Template({
       title = {frontmatter.title}
       description = {description}
       url = {fields.slug}
-      eyecatchImage = {fields.slug}
+      eyecatchImage = {frontmatter.eyecatch?.publicURL}
     >
       <div className="container mx-auto max-w-3xl px-4">
         <article>
           <header className="pb-4">
             <time className="text-sm text-gray-500 mb-1">{frontmatter.date}</time>
-            <h1 className="text-2xl font-semibold text-gray-700 mb-1">{frontmatter.title}</h1>
+            <h1 className="text-xl font-semibold text-gray-700 mb-1">{frontmatter.title}</h1>
             <div class="flex justify-start gap-2">
+              <span className="text-sm text-gray-500">Tags: </span>
               {tags.map((tag) => {
                 return (
-                  <Link to={`/tags/${tag}`} className="text-sm text-gray-400">#{tag}</Link>
+                  <Link to={`/tags/${tag}`} className="text-sm text-gray-400">{tag}</Link>
                 )
               })}
             </div>
@@ -45,7 +46,7 @@ export const pageQuery = graphql`
   query($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html
-      excerpt
+      excerpt(pruneLength: 250)
       fields {
         slug
       }

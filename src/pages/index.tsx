@@ -24,11 +24,12 @@ export default function Template({data}: IndexPageProps ) {
           return (
           <div className="mb-6">
             <time className="block text-sm text-gray-500 mb-1">{node.frontmatter.date}</time>
-            <Link className="hover:no-underline" to={node.fields.slug}><span className="block text-xl text-gray-700 mb-1">{node.frontmatter.title}</span></Link>
+            <Link className="hover:no-underline" to={node.fields.slug}><span className="block text-gray-700 mb-1">{node.frontmatter.title}</span></Link>
             <div className="flex justify-start gap-2">
+              <span className="text-sm text-gray-500">Tags: </span>
               {tags.map((tag) => {
                 return (
-                  <Link to={`/tags/${tag}`} className="text-sm text-gray-400">#{tag}</Link>
+                  <Link to={`/tags/${tag}`} className="text-sm text-gray-400">{tag}</Link>
                 )
               })}
             </div>
@@ -49,7 +50,7 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
-            date
+            date(formatString: "MMMM DD, YYYY")
             title
             tags
           }
@@ -58,4 +59,3 @@ export const pageQuery = graphql`
     }
   }
 `
-
