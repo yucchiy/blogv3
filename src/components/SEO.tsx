@@ -1,4 +1,3 @@
-import { Link } from "gatsby"
 import * as React from "react"
 import { Helmet } from "react-helmet"
 import defaultImage from "../images/defaultImage.png"
