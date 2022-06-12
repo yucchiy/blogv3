@@ -243,6 +243,8 @@ export type DirectoryCtimeArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
+  port?: Maybe<Scalars['Int']>;
+  host?: Maybe<Scalars['String']>;
   graphqlTypegen?: Maybe<Scalars['Boolean']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
@@ -367,7 +369,6 @@ export type MarkdownRemark = Node & {
   timeToRead?: Maybe<Scalars['Int']>;
   tableOfContents?: Maybe<Scalars['String']>;
   wordCount?: Maybe<MarkdownWordCount>;
-  gatsbyPath?: Maybe<Scalars['String']>;
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
@@ -397,11 +398,6 @@ export type MarkdownRemarkTableOfContentsArgs = {
   pathToSlugField?: InputMaybe<Scalars['String']>;
   maxDepth?: InputMaybe<Scalars['Int']>;
   heading?: InputMaybe<Scalars['String']>;
-};
-
-
-export type MarkdownRemarkGatsbyPathArgs = {
-  filePath?: InputMaybe<Scalars['String']>;
 };
 
 export type MarkdownRemarkFrontmatter = {
@@ -552,6 +548,8 @@ export type QueryAllDirectoryArgs = {
 export type QuerySiteArgs = {
   buildTime?: InputMaybe<DateQueryOperatorInput>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
+  port?: InputMaybe<IntQueryOperatorInput>;
+  host?: InputMaybe<StringQueryOperatorInput>;
   graphqlTypegen?: InputMaybe<BooleanQueryOperatorInput>;
   polyfill?: InputMaybe<BooleanQueryOperatorInput>;
   pathPrefix?: InputMaybe<StringQueryOperatorInput>;
@@ -674,7 +672,6 @@ export type QueryMarkdownRemarkArgs = {
   timeToRead?: InputMaybe<IntQueryOperatorInput>;
   tableOfContents?: InputMaybe<StringQueryOperatorInput>;
   wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
-  gatsbyPath?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
@@ -748,7 +745,6 @@ export type MarkdownRemarkFilterInput = {
   timeToRead?: InputMaybe<IntQueryOperatorInput>;
   tableOfContents?: InputMaybe<StringQueryOperatorInput>;
   wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
-  gatsbyPath?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
@@ -1024,7 +1020,6 @@ export type FileFieldsEnum =
   | 'childrenMarkdownRemark___wordCount___paragraphs'
   | 'childrenMarkdownRemark___wordCount___sentences'
   | 'childrenMarkdownRemark___wordCount___words'
-  | 'childrenMarkdownRemark___gatsbyPath'
   | 'childrenMarkdownRemark___parent___id'
   | 'childrenMarkdownRemark___parent___parent___id'
   | 'childrenMarkdownRemark___parent___parent___children'
@@ -1126,7 +1121,6 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___wordCount___paragraphs'
   | 'childMarkdownRemark___wordCount___sentences'
   | 'childMarkdownRemark___wordCount___words'
-  | 'childMarkdownRemark___gatsbyPath'
   | 'childMarkdownRemark___parent___id'
   | 'childMarkdownRemark___parent___parent___id'
   | 'childMarkdownRemark___parent___parent___children'
@@ -1605,6 +1599,8 @@ export type SiteFieldsEnum =
   | 'siteMetadata___title'
   | 'siteMetadata___description'
   | 'siteMetadata___siteUrl'
+  | 'port'
+  | 'host'
   | 'graphqlTypegen'
   | 'polyfill'
   | 'pathPrefix'
@@ -1741,6 +1737,8 @@ export type SiteGroupConnectionGroupArgs = {
 export type SiteFilterInput = {
   buildTime?: InputMaybe<DateQueryOperatorInput>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
+  port?: InputMaybe<IntQueryOperatorInput>;
+  host?: InputMaybe<StringQueryOperatorInput>;
   graphqlTypegen?: InputMaybe<BooleanQueryOperatorInput>;
   polyfill?: InputMaybe<BooleanQueryOperatorInput>;
   pathPrefix?: InputMaybe<StringQueryOperatorInput>;
@@ -2695,7 +2693,6 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___eyecatch___childrenMarkdownRemark___headings'
   | 'frontmatter___eyecatch___childrenMarkdownRemark___timeToRead'
   | 'frontmatter___eyecatch___childrenMarkdownRemark___tableOfContents'
-  | 'frontmatter___eyecatch___childrenMarkdownRemark___gatsbyPath'
   | 'frontmatter___eyecatch___childrenMarkdownRemark___children'
   | 'frontmatter___eyecatch___childMarkdownRemark___id'
   | 'frontmatter___eyecatch___childMarkdownRemark___excerpt'
@@ -2707,7 +2704,6 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___eyecatch___childMarkdownRemark___headings'
   | 'frontmatter___eyecatch___childMarkdownRemark___timeToRead'
   | 'frontmatter___eyecatch___childMarkdownRemark___tableOfContents'
-  | 'frontmatter___eyecatch___childMarkdownRemark___gatsbyPath'
   | 'frontmatter___eyecatch___childMarkdownRemark___children'
   | 'frontmatter___eyecatch___id'
   | 'frontmatter___eyecatch___parent___id'
@@ -2741,7 +2737,6 @@ export type MarkdownRemarkFieldsEnum =
   | 'wordCount___paragraphs'
   | 'wordCount___sentences'
   | 'wordCount___words'
-  | 'gatsbyPath'
   | 'parent___id'
   | 'parent___parent___id'
   | 'parent___parent___parent___id'
@@ -2888,6 +2883,13 @@ export type TagListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TagListQuery = { allMarkdownRemark: { group: Array<{ fieldValue?: string | null, totalCount: number }> } };
+
+export type PostPageQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type PostPageQuery = { markdownRemark?: { html?: string | null, excerpt?: string | null, fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, type?: string | null, tags?: Array<string | null> | null, title?: string | null, description?: string | null, eyecatch?: { publicURL?: string | null } | null } | null } | null };
 
 export type TagPageQueryVariables = Exact<{
   tag: Scalars['String'];

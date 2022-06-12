@@ -20,6 +20,19 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const result = await graphql(`
     {
+      postsRemark: allMarkdownRemark(
+        filter: { frontmatter: { type: { ne: "page" } } },
+        sort: { fields: [frontmatter___date], order: DESC }
+      ) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+          }
+        }
+      }
       tagsGroup: allMarkdownRemark {
         group(field: frontmatter___tags) {
           fieldValue
@@ -33,11 +46,24 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
 
+  const postTemplate = path.resolve("src/templates/post.tsx")
+  const posts = result.data.postsRemark.edges
+  posts.forEach(({ node }) => {
+    createPage({
+      path: node.fields.slug,
+      component: postTemplate,
+      context: {
+        id: node.id,
+      }
+    })
+  })
+
+  const tagTemplate = path.resolve("src/templates/tag.tsx")
   const tags = result.data.tagsGroup.group
   tags.forEach(tag => {
     createPage({
       path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
-      component: path.resolve("src/templates/tag.tsx"),
+      component: tagTemplate,
       context: {
         tag: tag.fieldValue,
       }
