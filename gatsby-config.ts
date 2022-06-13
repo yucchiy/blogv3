@@ -45,6 +45,13 @@ const config: GatsbyConfig = {
               className: `header-link`
             }
           },
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+              inlineCodeMarker: null,
+              noInlineHighlight: true,
+            }
+          },
           'gatsby-remark-copy-linked-files',
         ]
       }
