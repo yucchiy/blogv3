@@ -11,27 +11,25 @@ type IndexPageProps = {
 export default function Template({data}: IndexPageProps ) {
   return (
     <Layout>
-      <div className="container mx-auto max-w-3xl px-4">
-        {data.allMarkdownRemark.edges.map(({node}) => {
-          if (node.fields == null || node.fields?.slug == null ||
-              node.frontmatter == null || node.frontmatter.date == null || node.frontmatter.title == null) {
-            return(
-              <div/>
-            )
-          }
-
-          const tags = node.frontmatter.tags || []
-
-          return (
-            <PostListElement
-              title={node.frontmatter.title}
-              slug={node.fields.slug}
-              published={node.frontmatter.date}
-              tags={tags}
-            />
+      {data.allMarkdownRemark.edges.map(({node}) => {
+        if (node.fields == null || node.fields?.slug == null ||
+            node.frontmatter == null || node.frontmatter.date == null || node.frontmatter.title == null) {
+          return(
+            <div/>
           )
-        })}
-      </div>
+        }
+
+        const tags = node.frontmatter.tags || []
+
+        return (
+          <PostListElement
+            title={node.frontmatter.title}
+            slug={node.fields.slug}
+            published={node.frontmatter.date}
+            tags={tags}
+          />
+        )
+      })}
     </Layout>
   )
 }

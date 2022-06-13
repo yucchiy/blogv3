@@ -3,6 +3,7 @@ import React from "react";
 import { PostPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import kebabCase from "lodash/kebabCase"
+import Container from "../components/Container";
 
 type PostPageProps = {
   data: PostPageQuery,
@@ -24,9 +25,9 @@ export default function Template({data}: PostPageProps ) {
       url = {fields.slug!}
       eyecatchImage = {frontmatter.eyecatch?.publicURL !== null ? frontmatter.eyecatch?.publicURL : undefined}
     >
-      <div className="container mx-auto max-w-3xl px-4">
+      <Container>
         <article>
-          <header className="pb-4">
+          <header className="mb-6">
             {isPage ?
               <div>
                 <h1 className="text-2xl font-semibold text-gray-900 mb-1">{frontmatter.title}</h1>
@@ -50,7 +51,8 @@ export default function Template({data}: PostPageProps ) {
               dangerouslySetInnerHTML={{ __html: html }}
           />
         </article>
-      </div>
+
+      </Container>
     </Layout>
   )
 }

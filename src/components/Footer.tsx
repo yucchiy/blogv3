@@ -13,7 +13,7 @@ type FooterProps = {
 
 const Footer = ({ links }: FooterProps ) => {
     return (
-        <footer className="container max-w-3xl mx-auto mt-10 mb-10">
+        <footer className="container max-w-3xl mx-auto pt-10 pb-10">
             <div className="flex justify-center gap-6">
                 {links.map(link => {
                     return(
