@@ -35,7 +35,7 @@ export default function Template({data}: PostPageProps ) {
               <div>
                 <time className="text-sm text-gray-500 mb-1">{frontmatter.date}</time>
                 <h1 className="text-xl font-semibold text-gray-700 mb-1">{frontmatter.title}</h1>
-                <div className="flex justify-start gap-2">
+                <div className="flex flex-wrap justify-start gap-2">
                   <span className="text-sm text-gray-500">Tags: </span>
                   {tags.map((tag) => {
                     return (

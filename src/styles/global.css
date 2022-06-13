@@ -22,3 +22,7 @@ a:hover {
 .gatsby-resp-image-figcaption {
     text-align: center;
 }
+
+.gatsby-highlight code[class*="language-"], .gatsby-highlight pre[class*="language-"] {
+    font-size: 0.8rem;
+}

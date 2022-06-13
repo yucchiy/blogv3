@@ -18,7 +18,7 @@ const PostListElement = ({ title, slug, published, tags }: PostListElementProps 
         <Container>
             <time className="block text-sm text-gray-500 mb-1">{published}</time>
             <Link className="hover:no-underline" to={slug}><span className="block text-gray-700 mb-1">{title}</span></Link>
-            <div className="flex justify-start gap-2">
+            <div className="flex flex-wrap justify-start gap-2">
                 <span className="text-sm text-gray-500">Tags: </span>
                 {tags.map((tag) => {
                     return (
