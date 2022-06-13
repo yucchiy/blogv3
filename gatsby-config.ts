@@ -117,6 +117,13 @@ const config: GatsbyConfig = {
       }
     },
 
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `UA-36940311-7`,
+      },
+    },
+
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`
   ],
