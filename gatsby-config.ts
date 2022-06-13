@@ -6,7 +6,7 @@ const config: GatsbyConfig = {
     siteUrl: `https://blog.yucchiy.com`,
     siteLang: `ja`,
     defaultDescription: `@yucchiy_の備忘録。気になった技術などについてまとめます。`,
-    twitterCard: `@yucchiy_`
+    twitterCard: `@yucchiy_`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -38,11 +38,17 @@ const config: GatsbyConfig = {
               showCaptions: true,
               markdownCaptions: true,
             }
-          }
+          },
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              className: `header-link`
+            }
+          },
+          'gatsby-remark-copy-linked-files',
         ]
       }
     },
-
     {
       resolve: `gatsby-plugin-feed`,
       options: {

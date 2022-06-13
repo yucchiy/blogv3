@@ -13,6 +13,21 @@ type LayoutProps = {
 }
 
 const Layout = ({ children, title, description, url, eyecatchImage }: LayoutProps) => {
+    const footerLinks = [
+        {
+            text: `Home`,
+            to: `/`
+        },
+        {
+            text: `Profile`,
+            to: `/profile`
+        },
+        {
+            text: `Unity Weekly`,
+            to: `/project/unity-weekly`
+        },
+    ];
+
     return (
         <div>
             <SEO
@@ -23,7 +38,7 @@ const Layout = ({ children, title, description, url, eyecatchImage }: LayoutProp
             />
             <Header/>
             <main>{children}</main>
-            <Footer/>
+            <Footer links={footerLinks}/>
         </div>
     )
 }

@@ -38,7 +38,10 @@ export default function Template({data}: IndexPageProps ) {
 
 export const pageQuery = graphql`
   query IndexPage {
-    allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {
+    allMarkdownRemark(
+      filter: { frontmatter: { type: { ne: "page" } } },
+      sort: {fields: frontmatter___date, order: DESC},
+    ) {
       edges {
         node {
           fields {
