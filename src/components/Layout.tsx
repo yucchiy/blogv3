@@ -29,7 +29,7 @@ const Layout = ({ children, title, description, url, eyecatchImage }: LayoutProp
     ];
 
     return (
-        <div className="bg-slate-100">
+        <div className="bg-slate-100 min-h-screen">
             <SEO
                 title={title}
                 description={description}
