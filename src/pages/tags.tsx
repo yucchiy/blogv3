@@ -11,8 +11,8 @@ type TagListPageProps = {
 export default function Template({data}: TagListPageProps ) {
   return (
     <Layout>
-      <div className="container mx-auto max-w-3xl px-4">
-          <h1 className="text-2xl font-bold mb-4">タグ一覧</h1>
+      <div className="container mx-auto max-w-3xl">
+          <h1 className="text-2xl font-bold mb-4 mx-6">タグ一覧</h1>
           <ul className="list-disc list-inside">
               {data.allMarkdownRemark.group.map((tag) => {
                   return(

@@ -12,7 +12,7 @@ export default function Template({data}: UnityWeeklyListPageProps ) {
   return (
     <Layout>
       <div className="container mx-auto max-w-3xl">
-        <h1 className="text-2xl font-bold mb-4">Unity Weekly</h1>
+        <h1 className="text-2xl font-bold mb-4 mx-6">Unity Weekly</h1>
         {data.allMarkdownRemark.edges.map(({node}) => {
           if (node.fields == null || node.fields?.slug == null ||
               node.frontmatter == null || node.frontmatter.date == null || node.frontmatter.title == null) {
