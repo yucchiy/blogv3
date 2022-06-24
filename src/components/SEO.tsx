@@ -62,7 +62,8 @@ const SEO = ({
                 { name: 'twitter:site', content: twitterSite },
                 { name: 'twitter:image', content: metaImage },
             ]}
-        />
+        >
+        </Helmet>
     )
 }
 

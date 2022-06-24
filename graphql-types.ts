@@ -243,6 +243,8 @@ export type DirectoryCtimeArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
+  port?: Maybe<Scalars['Int']>;
+  host?: Maybe<Scalars['String']>;
   graphqlTypegen?: Maybe<Scalars['Boolean']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
@@ -549,6 +551,8 @@ export type QueryAllDirectoryArgs = {
 export type QuerySiteArgs = {
   buildTime?: InputMaybe<DateQueryOperatorInput>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
+  port?: InputMaybe<IntQueryOperatorInput>;
+  host?: InputMaybe<StringQueryOperatorInput>;
   graphqlTypegen?: InputMaybe<BooleanQueryOperatorInput>;
   polyfill?: InputMaybe<BooleanQueryOperatorInput>;
   pathPrefix?: InputMaybe<StringQueryOperatorInput>;
@@ -1604,6 +1608,8 @@ export type SiteFieldsEnum =
   | 'siteMetadata___siteLang'
   | 'siteMetadata___defaultDescription'
   | 'siteMetadata___twitterCard'
+  | 'port'
+  | 'host'
   | 'graphqlTypegen'
   | 'polyfill'
   | 'pathPrefix'
@@ -1740,6 +1746,8 @@ export type SiteGroupConnectionGroupArgs = {
 export type SiteFilterInput = {
   buildTime?: InputMaybe<DateQueryOperatorInput>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
+  port?: InputMaybe<IntQueryOperatorInput>;
+  host?: InputMaybe<StringQueryOperatorInput>;
   graphqlTypegen?: InputMaybe<BooleanQueryOperatorInput>;
   polyfill?: InputMaybe<BooleanQueryOperatorInput>;
   pathPrefix?: InputMaybe<StringQueryOperatorInput>;
@@ -2883,12 +2891,12 @@ export type Unnamed_2_Query = { site?: { siteMetadata?: { title?: string | null,
 export type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type IndexPageQuery = { allMarkdownRemark: { edges: Array<{ node: { fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, title?: string | null, tags?: Array<string | null> | null } | null } }> } };
+export type IndexPageQuery = { allMarkdownRemark: { edges: Array<{ node: { fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, description?: string | null, title?: string | null, tags?: Array<string | null> | null } | null } }> } };
 
 export type UnityWeeklyListPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UnityWeeklyListPageQuery = { allMarkdownRemark: { edges: Array<{ node: { id: string, fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, title?: string | null, tags?: Array<string | null> | null } | null } }> } };
+export type UnityWeeklyListPageQuery = { allMarkdownRemark: { edges: Array<{ node: { id: string, fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, title?: string | null, description?: string | null, tags?: Array<string | null> | null } | null } }> } };
 
 export type TagListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2907,4 +2915,4 @@ export type TagPageQueryVariables = Exact<{
 }>;
 
 
-export type TagPageQuery = { allMarkdownRemark: { edges: Array<{ node: { fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, title?: string | null, tags?: Array<string | null> | null } | null } }> } };
+export type TagPageQuery = { allMarkdownRemark: { edges: Array<{ node: { fields?: { slug?: string | null } | null, frontmatter?: { date?: any | null, title?: string | null, description?: string | null, tags?: Array<string | null> | null } | null } }> } };

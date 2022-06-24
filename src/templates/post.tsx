@@ -34,12 +34,13 @@ export default function Template({data}: PostPageProps ) {
               </div> :
               <div>
                 <time className="text-sm text-gray-500 mb-1">{frontmatter.date}</time>
-                <h1 className="text-xl font-semibold text-gray-700 mb-1">{frontmatter.title}</h1>
+                <h1 className="text-xl font-semibold text-gray-700 mb-2">{frontmatter.title}</h1>
                 <div className="flex flex-wrap justify-start gap-2">
-                  <span className="text-sm text-gray-500">Tags: </span>
                   {tags.map((tag) => {
                     return (
-                      <Link to={`/tags/${kebabCase(tag || "")}/`} className="text-sm text-gray-400">{tag}</Link>
+                      <Link
+                        className="px-4 py-2 border border-orange-600 text-orange-600 font-medium text-xs leanding-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:no-underline"
+                        to={`/tags/${kebabCase(tag || "")}/`}>{tag}</Link>
                     )
                   })}
                 </div>

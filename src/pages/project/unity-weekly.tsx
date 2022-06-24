@@ -27,6 +27,7 @@ export default function Template({data}: UnityWeeklyListPageProps ) {
             <PostListElement
               title={node.frontmatter.title}
               slug={node.fields.slug}
+              description={node.fields.description}
               published={node.frontmatter.date}
               tags={tags}
             />
@@ -52,6 +53,7 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            description
             tags
           }
         }

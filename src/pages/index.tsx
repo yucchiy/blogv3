@@ -25,6 +25,7 @@ export default function Template({data}: IndexPageProps ) {
           <PostListElement
             title={node.frontmatter.title}
             slug={node.fields.slug}
+            description={node.frontmatter.description}
             published={node.frontmatter.date}
             tags={tags}
           />
@@ -47,6 +48,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
+            description
             title
             tags
           }
