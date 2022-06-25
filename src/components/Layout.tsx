@@ -29,7 +29,7 @@ const Layout = ({ children, title, description, url, eyecatchImage }: LayoutProp
     ];
 
     return (
-        <div className="bg-slate-100 min-h-screen">
+        <div className="flex flex-col bg-slate-100 min-h-screen">
             <SEO
                 title={title}
                 description={description}
@@ -37,7 +37,7 @@ const Layout = ({ children, title, description, url, eyecatchImage }: LayoutProp
                 eyecatchImage={eyecatchImage}
             />
             <Header/>
-            <main>{children}</main>
+            <main className="flex-grow">{children}</main>
             <Footer links={footerLinks}/>
         </div>
     )

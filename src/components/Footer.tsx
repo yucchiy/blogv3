@@ -13,14 +13,18 @@ type FooterProps = {
 
 const Footer = ({ links }: FooterProps ) => {
     return (
-        <footer className="container max-w-3xl mx-auto pt-10 pb-10">
-            <div className="flex justify-center gap-6">
-                {links.map(link => {
-                    return(
-                        <Link className="hover:no-underline text-gray-800" to={link.to}>{link.text}</Link>
-                    )
-                })}
+        <footer className="mt-20 bg-gray-800 px6 py-8">
+            <div className="container max-w-3xl mx-auto">
+                <div className="flex justify-center mb-6 text-sm hover:no-underline gap-6">
+                    {links.map(link => {
+                        return(
+                            <Link className="text-gray-300 hover:underline" to={link.to}>{link.text}</Link>
+                        )
+                    })}
+                </div>
             </div>
+            <hr className="my-6 sm:mx-auto border-gray-700" />
+            <span className="block text-sm text-center text-gray-400">© 2022 Yucchiy's Note. All Rights Reserved.</span>
         </footer>
     )
 }
