@@ -20,9 +20,6 @@ module.exports = {
               fontSize: '1.125rem',
               lineHeight: '1.75rem',
             },
-            a: {
-              color: '#dc4e47'
-            }
           },
         },
       }),

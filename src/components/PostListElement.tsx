@@ -27,7 +27,7 @@ const PostListElement = ({ title, slug, description, published, tags }: PostList
                     {tags.map((tag) => {
                         return (
                             <Link
-                                className="px-4 py-2 border border-orange-600 text-orange-600 font-medium text-xs leanding-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:no-underline"
+                                className="px-4 py-2 border border-pink-500 text-pink-500 font-medium text-xs leanding-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:no-underline"
                                 to={`/tags/${kebabCase(tag || "")}/`}>{tag}</Link>
                         )
                     })}

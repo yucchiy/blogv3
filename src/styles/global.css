@@ -10,15 +10,6 @@ body {
     word-wrap: break-word;
 }
 
-a {
-    color: #dc4e47;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 .gatsby-resp-image-figcaption {
     text-align: center;
 }
